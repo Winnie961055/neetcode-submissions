@@ -1,0 +1,60 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        
+        # find middle
+
+        slow, fast = head, head.next
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        # reverse second
+
+        # step 1 : cut the second half out
+        second = slow.next # need to copy this first and then create the first one
+        slow.next = None #first
+
+        # step 2 : reverse
+        prev = None
+        curr = second
+
+        while curr:
+            nxt = curr.next # need to copy first
+            curr.next = prev
+            prev = curr
+            curr = nxt
+
+        second = prev
+
+        # 
+        first = head
+
+        while second:
+            tmp1 = first.next
+            tmp2 = second.next
+
+            first.next = second
+            second.next = tmp1
+            
+            first = tmp1
+            second = tmp2
+        
+
+
+
+        
+        
+        
+
+
+            
+
+            
+
